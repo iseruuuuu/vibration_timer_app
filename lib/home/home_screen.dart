@@ -25,6 +25,17 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: Colors.white,
             body: Column(
               children: [
+
+                Row(
+                  children: [
+                    const Text('00:00'),
+                    TextButton(
+                      onPressed: () => context.read<HomeScreenController>().onStart(),
+                      child: const Text('開始'),
+                    ),
+                  ],
+                ),
+
                 TextButton(
                     onPressed: () => context.read<HomeScreenController>().onStart(),
                     child: const Text('開始')
