@@ -20,14 +20,22 @@ class HomeScreenController extends StateNotifier<HomeScreenState> with LocatorMi
 
   final BuildContext context;
 
+  int start30 = 30;
+  int start60 = 60;
+
   @override
   void initState() {
     super.initState();
   }
 
+  // void onStart30 () {
+  //   CountDownTimer countDownTimer = new CountDown
+  //
+  // }
+
   void onStart() {
     //TODO 一度バイブレーションを鳴る。
-    Vibration.vibrate(pattern: [0, 10, 0, 2000000000]);
+    Vibration.vibrate(pattern: [0, 10, 0, 2000]);
   }
 
   void onStop() {
