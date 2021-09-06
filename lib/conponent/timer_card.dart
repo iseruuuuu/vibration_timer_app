@@ -35,7 +35,7 @@ class TimerCard extends StatelessWidget {
             child: Text(
               timerText,
               style: const TextStyle(
-                fontSize: 40,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
