@@ -11,6 +11,7 @@ part 'home_screen_state.freezed.dart';
 abstract class HomeScreenState with _$HomeScreenState {
   const factory HomeScreenState({
     @Default(30) int timer1,
+    @Default('00:10') String timer2,
     @Default('開始') String title1,
   }) = _HomeScreenState;
 }
@@ -27,7 +28,41 @@ class HomeScreenController extends StateNotifier<HomeScreenState>
   int start60 = 60;
 
   int _start = 30;
-  bool isStart = true;
+  bool isStart = false;
+
+
+  final interval = const Duration(seconds: 1);
+  final int timerMaxSeconds = 10;
+  int currentSeconds = 0;
+
+  String get timerText =>
+      '${((timerMaxSeconds - currentSeconds) ~/ 60).toString().padLeft(2, '0')}: ${((timerMaxSeconds - currentSeconds) % 60).toString().padLeft(2, '0')}';
+
+
+  startTimeout() {
+
+    //TODO 開始と一時停止の２種類があるといい。
+
+    var duration = interval;
+    Timer.periodic(duration, (timer) {
+      currentSeconds = timer.tick;
+
+      //TODO 時間になったら、バイブレーションを鳴らす。
+      if (timer.tick > timerMaxSeconds) {
+        timer.cancel();
+        print("das");
+        state = state.copyWith(
+          title1: '開始zasa',
+          timer2: '00:10',
+        );
+      }else{
+        state = state.copyWith(
+          title1: '停止',
+          timer2: timerText,
+        );
+      }
+    });
+  }
 
   @override
   void initState() {
@@ -37,6 +72,7 @@ class HomeScreenController extends StateNotifier<HomeScreenState>
   void startTimer() {
     Timer _timer;
     const oneSec = Duration(seconds: 1);
+    isStart = !isStart;
     if (isStart) {
       _timer = Timer.periodic(
         oneSec,
@@ -44,14 +80,14 @@ class HomeScreenController extends StateNotifier<HomeScreenState>
           if (_start == 0) {
             timer.cancel();
             state = state.copyWith(
-              title1: '開始',
+              title1: '開始za',
               timer1: 30,
             );
           } else {
             _start--;
             isStart != isStart;
             state = state.copyWith(
-              title1: '停止',
+              title1: '停止s',
               timer1: _start,
             );
           };
@@ -64,7 +100,7 @@ class HomeScreenController extends StateNotifier<HomeScreenState>
           timer.cancel();
           isStart != isStart;
           state = state.copyWith(
-            title1: '開始',
+            title1: '開始i',
             timer1: 30,
           );
         },
@@ -85,6 +121,7 @@ class HomeScreenController extends StateNotifier<HomeScreenState>
   void onStart() {
     //TODO 一度バイブレーションを鳴る。
     Vibration.vibrate(pattern: [0, 10, 0, 2000]);
+    //TODO 強制的に止める方法が知りたい
   }
 
   void onStop() {

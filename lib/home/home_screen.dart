@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         final timer1 = context.select<HomeScreenState, int>((state) => state.timer1);
         final title1 = context.select<HomeScreenState, String>((state) => state.title1);
+        final title2 = context.select<HomeScreenState, String>((state) => state.timer2);
         return Scaffold(
           appBar: AppBar(
             elevation: 1,
@@ -42,9 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   timerText: title1,
                 ),
                 TimerCard(
-                  onTap: () => context.read<HomeScreenController>().onStart(),
-                  buttonText: '01:00',
-                  timerText: '開始',
+                  onTap: () => context.read<HomeScreenController>().startTimeout(),
+                  buttonText: title2,
+                  timerText: title1,
                 ),
 
                 TimerCard(

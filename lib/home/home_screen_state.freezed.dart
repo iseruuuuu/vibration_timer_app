@@ -17,9 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$HomeScreenStateTearOff {
   const _$HomeScreenStateTearOff();
 
-  _HomeScreenState call({int timer1 = 30, String title1 = '開始'}) {
+  _HomeScreenState call(
+      {int timer1 = 30, String timer2 = '00:10', String title1 = '開始'}) {
     return _HomeScreenState(
       timer1: timer1,
+      timer2: timer2,
       title1: title1,
     );
   }
@@ -31,6 +33,7 @@ const $HomeScreenState = _$HomeScreenStateTearOff();
 /// @nodoc
 mixin _$HomeScreenState {
   int get timer1 => throw _privateConstructorUsedError;
+  String get timer2 => throw _privateConstructorUsedError;
   String get title1 => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -43,7 +46,7 @@ abstract class $HomeScreenStateCopyWith<$Res> {
   factory $HomeScreenStateCopyWith(
           HomeScreenState value, $Res Function(HomeScreenState) then) =
       _$HomeScreenStateCopyWithImpl<$Res>;
-  $Res call({int timer1, String title1});
+  $Res call({int timer1, String timer2, String title1});
 }
 
 /// @nodoc
@@ -58,6 +61,7 @@ class _$HomeScreenStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? timer1 = freezed,
+    Object? timer2 = freezed,
     Object? title1 = freezed,
   }) {
     return _then(_value.copyWith(
@@ -65,6 +69,10 @@ class _$HomeScreenStateCopyWithImpl<$Res>
           ? _value.timer1
           : timer1 // ignore: cast_nullable_to_non_nullable
               as int,
+      timer2: timer2 == freezed
+          ? _value.timer2
+          : timer2 // ignore: cast_nullable_to_non_nullable
+              as String,
       title1: title1 == freezed
           ? _value.title1
           : title1 // ignore: cast_nullable_to_non_nullable
@@ -80,7 +88,7 @@ abstract class _$HomeScreenStateCopyWith<$Res>
           _HomeScreenState value, $Res Function(_HomeScreenState) then) =
       __$HomeScreenStateCopyWithImpl<$Res>;
   @override
-  $Res call({int timer1, String title1});
+  $Res call({int timer1, String timer2, String title1});
 }
 
 /// @nodoc
@@ -97,6 +105,7 @@ class __$HomeScreenStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? timer1 = freezed,
+    Object? timer2 = freezed,
     Object? title1 = freezed,
   }) {
     return _then(_HomeScreenState(
@@ -104,6 +113,10 @@ class __$HomeScreenStateCopyWithImpl<$Res>
           ? _value.timer1
           : timer1 // ignore: cast_nullable_to_non_nullable
               as int,
+      timer2: timer2 == freezed
+          ? _value.timer2
+          : timer2 // ignore: cast_nullable_to_non_nullable
+              as String,
       title1: title1 == freezed
           ? _value.title1
           : title1 // ignore: cast_nullable_to_non_nullable
@@ -115,18 +128,22 @@ class __$HomeScreenStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_HomeScreenState implements _HomeScreenState {
-  const _$_HomeScreenState({this.timer1 = 30, this.title1 = '開始'});
+  const _$_HomeScreenState(
+      {this.timer1 = 30, this.timer2 = '00:10', this.title1 = '開始'});
 
   @JsonKey(defaultValue: 30)
   @override
   final int timer1;
+  @JsonKey(defaultValue: '00:10')
+  @override
+  final String timer2;
   @JsonKey(defaultValue: '開始')
   @override
   final String title1;
 
   @override
   String toString() {
-    return 'HomeScreenState(timer1: $timer1, title1: $title1)';
+    return 'HomeScreenState(timer1: $timer1, timer2: $timer2, title1: $title1)';
   }
 
   @override
@@ -135,6 +152,8 @@ class _$_HomeScreenState implements _HomeScreenState {
         (other is _HomeScreenState &&
             (identical(other.timer1, timer1) ||
                 const DeepCollectionEquality().equals(other.timer1, timer1)) &&
+            (identical(other.timer2, timer2) ||
+                const DeepCollectionEquality().equals(other.timer2, timer2)) &&
             (identical(other.title1, title1) ||
                 const DeepCollectionEquality().equals(other.title1, title1)));
   }
@@ -143,6 +162,7 @@ class _$_HomeScreenState implements _HomeScreenState {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(timer1) ^
+      const DeepCollectionEquality().hash(timer2) ^
       const DeepCollectionEquality().hash(title1);
 
   @JsonKey(ignore: true)
@@ -152,11 +172,13 @@ class _$_HomeScreenState implements _HomeScreenState {
 }
 
 abstract class _HomeScreenState implements HomeScreenState {
-  const factory _HomeScreenState({int timer1, String title1}) =
+  const factory _HomeScreenState({int timer1, String timer2, String title1}) =
       _$_HomeScreenState;
 
   @override
   int get timer1 => throw _privateConstructorUsedError;
+  @override
+  String get timer2 => throw _privateConstructorUsedError;
   @override
   String get title1 => throw _privateConstructorUsedError;
   @override
