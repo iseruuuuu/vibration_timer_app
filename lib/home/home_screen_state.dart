@@ -47,14 +47,17 @@ class HomeScreenController extends StateNotifier<HomeScreenState>
     Timer.periodic(duration, (timer) {
       currentSeconds = timer.tick;
 
-      //TODO 時間になったら、バイブレーションを鳴らす。
+
       if (timer.tick > timerMaxSeconds) {
         timer.cancel();
-        print("das");
         state = state.copyWith(
           title1: '開始zasa',
           timer2: '00:10',
         );
+
+        //TODO バイブレーションを鳴らす。
+        startVibration();
+
       }else{
         state = state.copyWith(
           title1: '停止',
@@ -67,6 +70,40 @@ class HomeScreenController extends StateNotifier<HomeScreenState>
   @override
   void initState() {
     super.initState();
+  }
+
+  void startVibration() async {
+    //TODO バイブレーションを鳴らす。
+
+    //ちょい振動
+    // Vibration.vibrate();
+
+    //時間をおく
+    // await Future.delayed(const Duration(seconds: 2));
+
+    //ちょい振動
+    // Vibration.vibrate(amplitude: 128);
+
+    // await Future.delayed(const Duration(seconds: 2));
+
+    //ちょい振動
+    // Vibration.vibrate(duration: 1000);
+
+    // await Future.delayed(const Duration(seconds: 2));
+
+    // Vibration.vibrate(duration: 1000, amplitude: 128);
+
+    // await Future.delayed(const Duration(seconds: 2));
+
+    //断続的に振動がある。
+    Vibration.vibrate(pattern: [500, 1000, 500, 2000]);
+
+    await Future.delayed(const Duration(seconds: 2));
+
+    Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
+
+
+
   }
 
   void startTimer() {
