@@ -98,9 +98,9 @@ class HomeScreenController extends StateNotifier<HomeScreenState>
     //断続的に振動がある。
     Vibration.vibrate(pattern: [500, 1000, 500, 2000]);
 
-    await Future.delayed(const Duration(seconds: 2));
+    // await Future.delayed(const Duration(seconds: 2));
 
-    Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
+    // Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
 
 
 
