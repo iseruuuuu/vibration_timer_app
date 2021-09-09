@@ -23,14 +23,13 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
       ),
       builder: (context, _) {
-
         final timer1 = context.select<HomeScreenState, int>((state) => state.timer1);
         final title1 = context.select<HomeScreenState, String>((state) => state.title1);
         final title2 = context.select<HomeScreenState, String>((state) => state.timer2);
         return Scaffold(
           appBar: AppBar(
-            elevation: 1,
-            backgroundColor: Colors.white,
+            elevation: 0,
+            backgroundColor: Colors.grey[100],
           ),
           backgroundColor: Colors.white,
           body: SingleChildScrollView(

@@ -46,13 +46,11 @@ class HomeScreenController extends StateNotifier<HomeScreenState>
     var duration = interval;
     Timer.periodic(duration, (timer) {
       currentSeconds = timer.tick;
-
-
       if (timer.tick > timerMaxSeconds) {
         timer.cancel();
         state = state.copyWith(
-          title1: '開始zasa',
-          timer2: '00:10',
+          title1: '開始',
+          timer2: '00：10',
         );
 
         //TODO バイブレーションを鳴らす。
