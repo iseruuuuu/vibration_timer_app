@@ -40,6 +40,9 @@ dependencies:
   state_notifier:
   build_runner:
 
+  #timer
+  timer_count_down: ^2.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

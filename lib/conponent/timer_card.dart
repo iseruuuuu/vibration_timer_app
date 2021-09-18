@@ -20,8 +20,7 @@ class TimerCard extends StatelessWidget {
       height: MediaQuery.of(context).size.height / 6,
       child: Card(
         elevation: 10,
-        color: Colors.orange,
-        shadowColor: Colors.yellow,
+        color: Colors.black26,
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -29,6 +28,7 @@ class TimerCard extends StatelessWidget {
             Text(
               buttonText,
               style: const TextStyle(
+                color: Colors.white,
                 fontSize: 50,
                 fontWeight: FontWeight.bold,
               ),
@@ -38,6 +38,7 @@ class TimerCard extends StatelessWidget {
               child: Text(
                 timerText,
                 style: const TextStyle(
+                  color: Colors.orange,
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),

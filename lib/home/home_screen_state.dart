@@ -16,8 +16,7 @@ abstract class HomeScreenState with _$HomeScreenState {
   }) = _HomeScreenState;
 }
 
-class HomeScreenController extends StateNotifier<HomeScreenState>
-    with LocatorMixin {
+class HomeScreenController extends StateNotifier<HomeScreenState> with LocatorMixin {
   HomeScreenController({
     required this.context,
   }) : super(const HomeScreenState());
@@ -30,6 +29,8 @@ class HomeScreenController extends StateNotifier<HomeScreenState>
   int _start = 30;
   bool isStart = false;
 
+  bool isTimer = false;
+
 
   final interval = const Duration(seconds: 1);
   final int timerMaxSeconds = 10;
@@ -40,30 +41,49 @@ class HomeScreenController extends StateNotifier<HomeScreenState>
 
 
   startTimeout() {
-
     //TODO 開始と一時停止の２種類があるといい。
+    //TODO 設定時間については、Screenで渡してあげたい。
 
-    var duration = interval;
-    Timer.periodic(duration, (timer) {
-      currentSeconds = timer.tick;
-      if (timer.tick > timerMaxSeconds) {
-        timer.cancel();
-        state = state.copyWith(
-          title1: '開始',
-          timer2: '00：10',
-        );
+      var duration = interval;
+      Timer.periodic(duration, (timer) {
+        currentSeconds = timer.tick;
+        if (timer.tick > timerMaxSeconds) {
+          timer.cancel();
+          state = state.copyWith(
+            // title1: '開始',
+            timer2: '00：10',
+          );
+          //TODO バイブレーションを鳴らす。
+          startVibration();
+        } else {
+          state = state.copyWith(
+            // title1: '停止',
+            timer2: timerText,
+          );
+        }
+      });
+    isStart = !isStart;
 
-        //TODO バイブレーションを鳴らす。
-        startVibration();
-
-      }else{
-        state = state.copyWith(
-          title1: '停止',
-          timer2: timerText,
-        );
+    if (isStart) {
+      print('再生');
+      state = state.copyWith(
+        title1: '開始',
+      );
+    } else {
+      print('停止');
+      Timer.periodic(duration, (timer) {
+        currentSeconds = timer.tick;
+        if (timer.tick > timerMaxSeconds) {
+          timer.cancel();
+          state = state.copyWith(
+            title1: '停止',
+          );
+        }
       }
-    });
+      );
+    }
   }
+
 
   @override
   void initState() {
@@ -99,7 +119,6 @@ class HomeScreenController extends StateNotifier<HomeScreenState>
     // await Future.delayed(const Duration(seconds: 2));
 
     // Vibration.vibrate(pattern: [500, 1000, 500, 2000], intensities: [1, 255]);
-
 
 
   }
