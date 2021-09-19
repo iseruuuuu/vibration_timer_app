@@ -9,6 +9,7 @@ A new Flutter project.
 
 ・通知音をなくす。  
 ・通知文を考える  
+・ダイアログ文を考える  
 
 ・isStartとかをSharePreferenceで保存する  
 ・再起動のことを考える。  
