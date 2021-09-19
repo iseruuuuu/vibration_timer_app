@@ -60,10 +60,11 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.brown[50],
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
+        backgroundColor: Colors.brown[50],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -149,10 +150,6 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                 },
               ),
             ],
-          ),
-          TextButton(
-            onPressed: () {},
-            child: const Text('通知'),
           ),
           const Spacer(),
         ],
