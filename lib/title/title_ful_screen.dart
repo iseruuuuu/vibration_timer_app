@@ -27,6 +27,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
         backgroundColor: Colors.white,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           isStart
               ? SizedBox(
@@ -104,6 +105,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
               ),
             ],
           ),
+          const Spacer(),
         ],
       ),
     );
