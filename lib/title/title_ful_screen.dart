@@ -21,36 +21,41 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
   bool isPause = false;
   int setTime = 0;
 
-  // Future onDidReceiveLocalNotification(
-  //     //int id,
-  //     String title,
-  //     String body,
-  //     //String payload
-  //     ) async {
-  //   // display a dialog with the notification details, tap ok to go to another page
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) => CupertinoAlertDialog(
-  //       title: Text(title),
-  //       content: Text(body),
-  //       actions: [
-  //         CupertinoDialogAction(
-  //           isDefaultAction: true,
-  //           child: Text('Ok'),
-  //           onPressed: () async {
-  //             Navigator.of(context, rootNavigator: true).pop();
-  //             // await Navigator.push(
-  //             //   context,
-  //             //   MaterialPageRoute(
-  //             //     builder: (context) => SecondScreen(payload),
-  //             //   ),
-  //             // );
-  //           },
-  //         )
-  //       ],
-  //     ),
-  //   );
-  // }
+  //ローカル通知の設定
+  Future<void> notify() {
+    //通知を鳴らしたくない。
+    final flap = FlutterLocalNotificationsPlugin();
+    return flap
+        .initialize(
+          const InitializationSettings(iOS: IOSInitializationSettings()),
+        )
+        .then(
+          (_) => flap.show(0, '', '設定した時間になりました。', const NotificationDetails()),
+        );
+  }
+
+  //ダイアログの通知
+  Future onDidReceiveLocalNotification(
+    String title,
+    String body,
+  ) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: Text(title),
+        content: Text(body),
+        actions: [
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            child: const Text('OK'),
+            onPressed: () async {
+              Navigator.of(context, rootNavigator: true).pop();
+            },
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +82,13 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                     onFinished: () {
                       setState(() {
                         isStart = isPause = false;
+                        //ダイアログの通知
+                        onDidReceiveLocalNotification(
+                          '設定した時間になりました。',
+                          'OKを押して解除してください。',
+                        );
+                        //Push通知の設定
+                        notify();
                       });
                       //終わったらバイブレーションを鳴らす。
                       Vibration.vibrate(pattern: [500, 1000, 500, 2000]);
