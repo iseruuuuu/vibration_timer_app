@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatelessWidget {
-
   final Function() onTap;
   final String title;
 
@@ -19,22 +18,16 @@ class ButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onTap,
         child: Text(
-            title,
+          title,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: MediaQuery.of(context).size.width / 30,
           ),
         ),
         style: ElevatedButton.styleFrom(
-          primary: Colors.blue,
+          primary: Colors.grey,
           onPrimary: Colors.black,
-          shape: const CircleBorder(
-            side: BorderSide(
-              color: Colors.black,
-              width: 1,
-              style: BorderStyle.solid,
-            ),
-          ),
+          shape: const CircleBorder(),
         ),
       ),
     );
