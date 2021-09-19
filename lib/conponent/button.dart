@@ -18,7 +18,13 @@ class ButtonWidget extends StatelessWidget {
       height: 100,
       child: ElevatedButton(
         onPressed: onTap,
-        child: Text(title),
+        child: Text(
+            title,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: MediaQuery.of(context).size.width / 30,
+          ),
+        ),
         style: ElevatedButton.styleFrom(
           primary: Colors.blue,
           onPrimary: Colors.black,

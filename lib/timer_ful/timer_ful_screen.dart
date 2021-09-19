@@ -63,7 +63,7 @@ class _TimerFulScreenState extends State<TimerFulScreen> {
             ),
             Countdown(
               controller: _controller,
-              //秒数
+              //秒数 => 後で渡してあげる。
               seconds: 5,
               build: (_, double time) => Text(
                 time.toString(),
