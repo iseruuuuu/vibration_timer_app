@@ -1,10 +1,15 @@
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
-import 'package:vibration_timer/conponent/button.dart';
 import 'package:vibration/vibration.dart';
+
+// Project imports:
+import 'package:vibration_timer/conponent/button.dart';
 import 'package:vibration_timer/conponent/timer_label.dart';
 
 class TitleFulScreen extends StatefulWidget {

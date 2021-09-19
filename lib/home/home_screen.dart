@@ -1,9 +1,15 @@
+// Dart imports:
 import 'dart:async';
 
+// Flutter imports:
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:vibration_timer/conponent/timer_card.dart';
 import 'home_screen_state.dart';
 

@@ -46,6 +46,12 @@ dependencies:
   #通知
   flutter_local_notifications: ^8.2.0
 
+  #言語選択
+  flutter_cupertino_localizations:
+
+  #importを整理
+  import_sorter: ^4.6.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
