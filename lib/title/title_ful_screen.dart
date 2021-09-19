@@ -15,11 +15,11 @@ class TitleFulScreen extends StatefulWidget {
 class _TitleFulScreenState extends State<TitleFulScreen> {
   var time = '';
   var time2 = '';
-  Duration initialtimer = new Duration();
-
-  final CountdownController _controller = CountdownController(autoStart: false);
+  Duration initialTimer = const Duration();
+  final CountdownController _controller = CountdownController(autoStart: true);
 
   bool isStart = false;
+  bool isPause = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +49,12 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                     ),
                     //区間
                     interval: const Duration(milliseconds: 100),
-                    //終わったらバイブレーションを鳴らす。
                     onFinished: () {
+                      setState(() {
+                        isStart = false;
+                        isPause = false;
+                      });
+                      //終わったらバイブレーションを鳴らす。
                       Vibration.vibrate(pattern: [500, 1000, 500, 2000]);
                     },
                   ),
@@ -62,10 +66,10 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                     mode: CupertinoTimerPickerMode.hms,
                     minuteInterval: 1,
                     secondInterval: 1,
-                    initialTimerDuration: initialtimer,
+                    initialTimerDuration: initialTimer,
                     onTimerDurationChanged: (Duration value) {
                       setState(() {
-                        initialtimer = value;
+                        initialTimer = value;
                         time2 = value.toString();
                       });
                     },
@@ -78,22 +82,28 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                 title: 'キャンセル',
                 onTap: () {
                   setState(() {
+                    //強制的にタイマーを終わらせる。
                     isStart = false;
+                    isPause = false;
+                    _controller.pause();
                   });
                 },
               ),
               ButtonWidget(
-                title: isStart ? '一時停止' : '開始',
+                // title: isStart ? '一時停止' : '開始',
+                title: isPause ? '一時停止' : '開始',
                 onTap: () {
                   setState(() {
+                    isPause = !isPause;
                     if (isStart) {
-                      //一時停止をする
-                      print('a');
+                      _controller.pause();
+                    } else {
+                      isStart = !isStart;
+                    }
+                    if (isPause) {
                       _controller.start();
                     } else {
-                      //再生中
-                      isStart = !isStart;
-                      print('b');
+                      _controller.pause();
                     }
                   });
                 },
