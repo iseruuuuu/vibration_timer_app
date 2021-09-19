@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 import 'package:vibration_timer/conponent/button.dart';
-import 'package:vibration_timer/timer_ful/timer_ful_screen.dart';
 import 'package:vibration/vibration.dart';
 
 class TitleFulScreen extends StatefulWidget {
