@@ -37,12 +37,10 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                   height: MediaQuery.of(context).size.height / 3,
                   child: Countdown(
                     controller: _controller,
-                    //秒数 => 後で渡してあげる。
                     seconds: setTime,
                     build: (_, double time) => TimerLabel(
                       title: time.toString(),
                     ),
-                    //区間
                     interval: const Duration(milliseconds: 100),
                     onFinished: () {
                       setState(() {
@@ -66,7 +64,6 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                         initialTimer = value;
                         //TODO 時間を全部秒に直してあげる
                         int i3 = value.inSeconds;
-                        //print(i3);//62
                         //TODO 時間を渡してあげる
                         setTime = i3;
                       });
@@ -87,12 +84,10 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                 },
               ),
               ButtonWidget(
-                // title: isStart ? '一時停止' : '開始',
                 title: isPause ? '一時停止' : '開始',
                 onTap: () {
-                  if(setTime == 0) {
-                    //何もしない。
-                  }else{
+                  if (setTime == 0) {
+                  } else {
                     setState(() {
                       isPause = !isPause;
                       if (isStart) {
