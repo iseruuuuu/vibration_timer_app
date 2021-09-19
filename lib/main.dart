@@ -7,8 +7,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 // Project imports:
 import 'package:vibration_timer/title/title_ful_screen.dart';
-import 'package:vibration_timer/language/japanese_cupertino_localizations.dart'
-    as jcl; //(ほかのライブラリと競合したのでas jclとしている)
 
 void main() {
   runApp(const MyApp());
@@ -20,17 +18,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      // localizationsDelegates: [
-      //   GlobalMaterialLocalizations.delegate,
-      //   GlobalWidgetsLocalizations.delegate,
-      //   DefaultCupertinoLocalizations.delegate,
-      //   jcl.JapaneseCupertinoLocalizations.delegate,
-      // ],
-      // supportedLocales: [
-      //   Locale('en', 'US'),
-      //   Locale('ja', 'JP'),
-      // ],
-      // locale: Locale('ja', 'JP'),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [Locale('English'), Locale('ja')],
       debugShowCheckedModeBanner: false,
       home: TitleFulScreen(),
     );
