@@ -43,6 +43,9 @@ dependencies:
   #timer
   timer_count_down: ^2.2.0
 
+  #通知
+  flutter_local_notifications: ^8.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
