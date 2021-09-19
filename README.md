@@ -13,7 +13,9 @@ A new Flutter project.
 
 ・isStartとかをSharePreferenceで保存する  
 ・再起動のことを考える。  
-・  
+
+・ボタンを押した時のアクションなどの調整
+・ボタンの大きさ     
 
 ・日本語化をする  OK  
 ・UIを凝る OK?  
