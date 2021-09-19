@@ -13,11 +13,8 @@ class TitleFulScreen extends StatefulWidget {
 }
 
 class _TitleFulScreenState extends State<TitleFulScreen> {
-  var time = '';
-  var time2 = '';
   Duration initialTimer = const Duration();
   final CountdownController _controller = CountdownController(autoStart: true);
-
   bool isStart = false;
   bool isPause = false;
 
@@ -51,8 +48,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                     interval: const Duration(milliseconds: 100),
                     onFinished: () {
                       setState(() {
-                        isStart = false;
-                        isPause = false;
+                        isStart = isPause = false;
                       });
                       //終わったらバイブレーションを鳴らす。
                       Vibration.vibrate(pattern: [500, 1000, 500, 2000]);
@@ -70,7 +66,6 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                     onTimerDurationChanged: (Duration value) {
                       setState(() {
                         initialTimer = value;
-                        time2 = value.toString();
                       });
                     },
                   ),
@@ -109,7 +104,6 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
               ),
             ],
           ),
-          Text(time2 + '下'),
         ],
       ),
     );
