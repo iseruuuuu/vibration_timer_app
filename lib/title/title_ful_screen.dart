@@ -115,6 +115,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                     },
                   ),
                 ),
+          const SizedBox(height: 50,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
