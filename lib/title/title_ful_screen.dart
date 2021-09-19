@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 import 'package:vibration_timer/conponent/button.dart';
@@ -19,6 +20,37 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
   bool isStart = false;
   bool isPause = false;
   int setTime = 0;
+
+  // Future onDidReceiveLocalNotification(
+  //     //int id,
+  //     String title,
+  //     String body,
+  //     //String payload
+  //     ) async {
+  //   // display a dialog with the notification details, tap ok to go to another page
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) => CupertinoAlertDialog(
+  //       title: Text(title),
+  //       content: Text(body),
+  //       actions: [
+  //         CupertinoDialogAction(
+  //           isDefaultAction: true,
+  //           child: Text('Ok'),
+  //           onPressed: () async {
+  //             Navigator.of(context, rootNavigator: true).pop();
+  //             // await Navigator.push(
+  //             //   context,
+  //             //   MaterialPageRoute(
+  //             //     builder: (context) => SecondScreen(payload),
+  //             //   ),
+  //             // );
+  //           },
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +137,10 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                 },
               ),
             ],
+          ),
+          TextButton(
+            onPressed: () {},
+            child: const Text('通知'),
           ),
           const Spacer(),
         ],

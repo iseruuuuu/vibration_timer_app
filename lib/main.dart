@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vibration_timer/timer/timer_screen.dart';
-import 'package:vibration_timer/timer_ful/timer_ful_screen.dart';
 import 'package:vibration_timer/title/title_ful_screen.dart';
 
 void main() {
@@ -13,7 +11,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      // home: TimerFulScreen(),
       home: TitleFulScreen(),
     );
   }
