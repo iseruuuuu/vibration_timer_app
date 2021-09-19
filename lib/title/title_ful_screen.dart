@@ -90,19 +90,23 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                 // title: isStart ? '一時停止' : '開始',
                 title: isPause ? '一時停止' : '開始',
                 onTap: () {
-                  setState(() {
-                    isPause = !isPause;
-                    if (isStart) {
-                      _controller.pause();
-                    } else {
-                      isStart = !isStart;
-                    }
-                    if (isPause) {
-                      _controller.start();
-                    } else {
-                      _controller.pause();
-                    }
-                  });
+                  if(setTime == 0) {
+                    //何もしない。
+                  }else{
+                    setState(() {
+                      isPause = !isPause;
+                      if (isStart) {
+                        _controller.pause();
+                      } else {
+                        isStart = !isStart;
+                      }
+                      if (isPause) {
+                        _controller.start();
+                      } else {
+                        _controller.pause();
+                      }
+                    });
+                  }
                 },
               ),
             ],
