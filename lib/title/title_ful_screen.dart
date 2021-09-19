@@ -4,6 +4,7 @@ import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 import 'package:vibration_timer/conponent/button.dart';
 import 'package:vibration/vibration.dart';
+import 'package:vibration_timer/conponent/timer_label.dart';
 
 class TitleFulScreen extends StatefulWidget {
   const TitleFulScreen({Key? key}) : super(key: key);
@@ -37,15 +38,9 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                   child: Countdown(
                     controller: _controller,
                     //秒数 => 後で渡してあげる。
-                    // seconds: 62,
                     seconds: setTime,
-                    build: (_, double time) => Center(
-                      child: Text(
-                        time.toString(),
-                        style: const TextStyle(
-                          fontSize: 100,
-                        ),
-                      ),
+                    build: (_, double time) => TimerLabel(
+                      title: time.toString(),
                     ),
                     //区間
                     interval: const Duration(milliseconds: 100),
