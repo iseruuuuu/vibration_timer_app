@@ -26,7 +26,8 @@ class ButtonWidget extends StatelessWidget {
           ),
         ),
         style: ElevatedButton.styleFrom(
-          primary: Colors.blueGrey[50],
+          // primary: Colors.blueGrey[50],
+          primary: Colors.grey[200],
           onPrimary: Colors.black,
           shape: const CircleBorder(),
         ),
