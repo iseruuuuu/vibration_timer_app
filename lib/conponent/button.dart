@@ -13,19 +13,19 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100,
-      height: 100,
+      width: 120,
+      height: 120,
       child: ElevatedButton(
         onPressed: onTap,
         child: Text(
           title,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: MediaQuery.of(context).size.width / 30,
+            fontSize: MediaQuery.of(context).size.width / 25,
           ),
         ),
         style: ElevatedButton.styleFrom(
-          primary: Colors.grey,
+          primary: Colors.blueGrey[50],
           onPrimary: Colors.black,
           shape: const CircleBorder(),
         ),
