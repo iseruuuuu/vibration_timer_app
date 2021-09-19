@@ -17,6 +17,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
   final CountdownController _controller = CountdownController(autoStart: true);
   bool isStart = false;
   bool isPause = false;
+  int setTime = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,8 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                   child: Countdown(
                     controller: _controller,
                     //秒数 => 後で渡してあげる。
-                    seconds: 5,
+                    // seconds: 62,
+                    seconds: setTime,
                     build: (_, double time) => Center(
                       child: Text(
                         time.toString(),
@@ -67,6 +69,11 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                     onTimerDurationChanged: (Duration value) {
                       setState(() {
                         initialTimer = value;
+                        //TODO 時間を全部秒に直してあげる
+                        int i3 = value.inSeconds;
+                        //print(i3);//62
+                        //TODO 時間を渡してあげる
+                        setTime = i3;
                       });
                     },
                   ),
