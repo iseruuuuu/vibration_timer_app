@@ -83,8 +83,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                 onTap: () {
                   setState(() {
                     //強制的にタイマーを終わらせる。
-                    isStart = false;
-                    isPause = false;
+                    isStart = isPause = false;
                     _controller.pause();
                   });
                 },
