@@ -28,27 +28,28 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
 
   //ローカル通知の設定
   Future<void> notify() {
-    //通知を鳴らしたくない。
     final flap = FlutterLocalNotificationsPlugin();
     return flap
         .initialize(
-          const InitializationSettings(iOS: IOSInitializationSettings()),
+          const InitializationSettings(iOS: IOSInitializationSettings(
+            defaultPresentSound: false,
+            defaultPresentAlert: true,
+            defaultPresentBadge: true,
+          )),
         )
         .then(
-          (_) => flap.show(0, '', '設定した時間になりました。', const NotificationDetails()),
+          (_) => flap.show(0, 'タイマー', '', const NotificationDetails()),
         );
   }
 
   //ダイアログの通知
   Future onDidReceiveLocalNotification(
     String title,
-    String body,
   ) async {
     showDialog(
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
         title: Text(title),
-        content: Text(body),
         actions: [
           CupertinoDialogAction(
             isDefaultAction: true,
@@ -91,7 +92,6 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                         //ダイアログの通知
                         onDidReceiveLocalNotification(
                           '設定した時間になりました。',
-                          'OKを押して解除してください。',
                         );
                         //Push通知の設定
                         notify();
