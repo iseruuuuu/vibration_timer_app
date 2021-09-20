@@ -3,8 +3,10 @@ import 'package:enum_to_string/enum_to_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum PreferenceKey {
-  //パスワード
-  password,
+  //再生の有無
+  isStart,
+  //一時停止の有無
+  isPause,
 }
 
 class Preference {
@@ -21,14 +23,25 @@ class Preference {
     await pref.setString(EnumToString.convertToString(key), value);
   }
 
+  Future<List<String>> getStringList(PreferenceKey key) async {
+    final pref = await preference;
+    final value = pref.getStringList(EnumToString.convertToString(key)) ?? [];
+    return value;
+  }
+
   Future<void> setStringList(PreferenceKey key, List<String> value) async {
     final pref = await preference;
     await pref.setStringList(EnumToString.convertToString(key), value);
   }
 
-  Future<List<String>> getStringList(PreferenceKey key) async {
+  Future<void> setBool(PreferenceKey key, bool value) async {
     final pref = await preference;
-    final value = pref.getStringList(EnumToString.convertToString(key)) ?? [];
+    await pref.setBool(EnumToString.convertToString(key), value);
+  }
+
+  Future<bool> getBool(PreferenceKey key) async {
+    final pref = await preference;
+    final value = pref.getBool(EnumToString.convertToString(key)) ?? false;
     return value;
   }
 
