@@ -24,6 +24,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
   final CountdownController _controller = CountdownController(autoStart: true);
   bool isStart = false;
   bool isPause = false;
+  bool isTimer = false;
   int setTime = 0;
 
   //ローカル通知の設定
@@ -33,7 +34,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
         .initialize(
           const InitializationSettings(
               iOS: IOSInitializationSettings(
-            defaultPresentSound: false,
+            defaultPresentSound: true,
             defaultPresentAlert: true,
             defaultPresentBadge: true,
           )),
@@ -41,6 +42,21 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
         .then(
           (_) => flap.show(0, 'タイマー', '', const NotificationDetails()),
         );
+  }
+
+  Future<void> notification() async {
+    setState(() {
+      if (isTimer) return;
+    });
+    notify();
+    await Future.delayed(const Duration(seconds: 2));
+    notify();
+    await Future.delayed(const Duration(seconds: 2));
+    notify();
+    await Future.delayed(const Duration(seconds: 2));
+    notify();
+    await Future.delayed(const Duration(seconds: 2));
+    notify();
   }
 
   //ダイアログの通知
@@ -57,6 +73,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
             child: const Text('OK'),
             onPressed: () async {
               Navigator.of(context, rootNavigator: true).pop();
+              isTimer = false;
             },
           ),
         ],
@@ -70,7 +87,6 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
       backgroundColor: Colors.brown[50],
       appBar: AppBar(
         elevation: 0,
-        // backgroundColor: Colors.white,
         backgroundColor: Colors.brown[50],
       ),
       body: Column(
@@ -90,12 +106,13 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                     onFinished: () {
                       setState(() {
                         isStart = isPause = false;
+                        isTimer = true;
                         //ダイアログの通知
                         onDidReceiveLocalNotification(
                           '設定した時間になりました。',
                         );
                         //Push通知の設定
-                        notify();
+                        notification();
                       });
                       //終わったらバイブレーションを鳴らす。
                       Vibration.vibrate(pattern: [500, 1000, 500, 2000]);
@@ -132,7 +149,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                 onTap: () {
                   setState(() {
                     //強制的にタイマーを終わらせる。
-                    isStart = isPause = false;
+                    isStart = isPause = isTimer = false;
                     _controller.pause();
                   });
                 },
