@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
-import 'package:vibration/vibration.dart';
 
 // Project imports:
 import 'package:vibration_timer/conponent/button.dart';
@@ -25,10 +24,11 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
   bool isStart = false;
   bool isPause = false;
   int setTime = 0;
+  final flap = FlutterLocalNotificationsPlugin();
 
   //ローカル通知の設定
   Future<void> notify() {
-    final flap = FlutterLocalNotificationsPlugin();
+    // final flap = FlutterLocalNotificationsPlugin();
     return flap
         .initialize(
           const InitializationSettings(
@@ -44,6 +44,13 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
         .then(
           (_) => flap.show(0, 'タイマー', '', const NotificationDetails()),
         );
+  }
+
+  void cancelNotification() async {
+    // final flap = FlutterLocalNotificationsPlugin();
+    // await flutterLocalNotificationsPlugin.cancelAll();
+    await flap.cancelAll();
+    await flap.cancel(0);
   }
 
   Future<void> notification() async {
@@ -87,6 +94,9 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
             onPressed: () async {
               Navigator.of(context, rootNavigator: true).pop();
               //TODO 通知を強制的に止める。
+              cancelNotification();
+              await flap.cancelAll();
+              await flap.cancel(0);
             },
           ),
         ],
@@ -159,6 +169,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
                     //強制的にタイマーを終わらせる。
                     isStart = isPause = false;
                     _controller.pause();
+                    cancelNotification();
                   });
                 },
               ),
