@@ -1,7 +1,6 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer';
 
 // Package imports:
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -20,43 +19,12 @@ class TitleFulScreen extends StatefulWidget {
   _TitleFulScreenState createState() => _TitleFulScreenState();
 }
 
-// class _TitleFulScreenState extends State<TitleFulScreen> {
-class _TitleFulScreenState extends State<TitleFulScreen> with WidgetsBindingObserver {
+class _TitleFulScreenState extends State<TitleFulScreen> {
   Duration initialTimer = const Duration();
   final CountdownController _controller = CountdownController(autoStart: true);
   bool isStart = false;
   bool isPause = false;
-  bool isTimer = false;
   int setTime = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!.addObserver(this);
-  }
-
-  @override
-  void dispose() {
-    print("dispose");
-    WidgetsBinding.instance!.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.inactive:
-        print('非アクティブになったときの処理');
-        break;
-      case AppLifecycleState.paused:
-        print('バックグラウンドになった時');
-        break;
-      case AppLifecycleState.resumed:
-        break;
-      case AppLifecycleState.detached:
-        break;
-    }
-  }
 
   //ローカル通知の設定
   Future<void> notify() {
@@ -68,7 +36,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> with WidgetsBindingObse
             requestAlertPermission: true,
             requestBadgePermission: true,
             requestSoundPermission: true,
-            defaultPresentSound: false,
+            defaultPresentSound: true,
             defaultPresentAlert: true,
             defaultPresentBadge: true,
           )),
@@ -79,6 +47,20 @@ class _TitleFulScreenState extends State<TitleFulScreen> with WidgetsBindingObse
   }
 
   Future<void> notification() async {
+    notify();
+    await Future.delayed(const Duration(seconds: 2));
+    notify();
+    await Future.delayed(const Duration(seconds: 2));
+    notify();
+    await Future.delayed(const Duration(seconds: 2));
+    notify();
+    await Future.delayed(const Duration(seconds: 2));
+    notify();
+    await Future.delayed(const Duration(seconds: 2));
+    notify();
+    await Future.delayed(const Duration(seconds: 2));
+    notify();
+    await Future.delayed(const Duration(seconds: 2));
     notify();
     await Future.delayed(const Duration(seconds: 2));
     notify();
@@ -104,7 +86,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> with WidgetsBindingObse
             child: const Text('OK'),
             onPressed: () async {
               Navigator.of(context, rootNavigator: true).pop();
-              isTimer = false;
+              //TODO 通知を強制的に止める。
             },
           ),
         ],
@@ -137,16 +119,11 @@ class _TitleFulScreenState extends State<TitleFulScreen> with WidgetsBindingObse
                     onFinished: () {
                       setState(() {
                         isStart = isPause = false;
-                        isTimer = true;
                         //ダイアログの通知
-                        onDidReceiveLocalNotification(
-                          '設定した時間になりました。',
-                        );
+                        onDidReceiveLocalNotification('設定した時間になりました。');
                         //Push通知の設定
                         notification();
                       });
-                      //終わったらバイブレーションを鳴らす。
-                      Vibration.vibrate(pattern: [500, 1000, 500, 2000]);
                     },
                   ),
                 )
@@ -180,7 +157,7 @@ class _TitleFulScreenState extends State<TitleFulScreen> with WidgetsBindingObse
                 onTap: () {
                   setState(() {
                     //強制的にタイマーを終わらせる。
-                    isStart = isPause = isTimer = false;
+                    isStart = isPause = false;
                     _controller.pause();
                   });
                 },
