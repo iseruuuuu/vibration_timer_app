@@ -1,6 +1,7 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer';
 
 // Package imports:
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -19,13 +20,43 @@ class TitleFulScreen extends StatefulWidget {
   _TitleFulScreenState createState() => _TitleFulScreenState();
 }
 
-class _TitleFulScreenState extends State<TitleFulScreen> {
+// class _TitleFulScreenState extends State<TitleFulScreen> {
+class _TitleFulScreenState extends State<TitleFulScreen> with WidgetsBindingObserver {
   Duration initialTimer = const Duration();
   final CountdownController _controller = CountdownController(autoStart: true);
   bool isStart = false;
   bool isPause = false;
   bool isTimer = false;
   int setTime = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance!.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    print("dispose");
+    WidgetsBinding.instance!.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.inactive:
+        print('非アクティブになったときの処理');
+        break;
+      case AppLifecycleState.paused:
+        print('バックグラウンドになった時');
+        break;
+      case AppLifecycleState.resumed:
+        break;
+      case AppLifecycleState.detached:
+        break;
+    }
+  }
 
   //ローカル通知の設定
   Future<void> notify() {
@@ -34,7 +65,10 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
         .initialize(
           const InitializationSettings(
               iOS: IOSInitializationSettings(
-            defaultPresentSound: true,
+            requestAlertPermission: true,
+            requestBadgePermission: true,
+            requestSoundPermission: true,
+            defaultPresentSound: false,
             defaultPresentAlert: true,
             defaultPresentBadge: true,
           )),
@@ -45,9 +79,6 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
   }
 
   Future<void> notification() async {
-    setState(() {
-      if (isTimer) return;
-    });
     notify();
     await Future.delayed(const Duration(seconds: 2));
     notify();
