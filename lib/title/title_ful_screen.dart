@@ -95,6 +95,10 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
               Navigator.of(context, rootNavigator: true).pop();
               //TODO 通知を強制的に止める。
               cancelNotification();
+              await flap.cancel(0);
+              await flap.cancel(0);
+              await flap.cancel(0);
+              await flap.cancel(0);
               await flap.cancelAll();
               await flap.cancel(0);
             },
