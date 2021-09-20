@@ -4,9 +4,7 @@ A new Flutter project.
 
 //TODO リスト
 
-・バイブレーションを止める  
-・バイブレーションを動かす  
-・isStartとかをSharePreferenceで保存する  
+
 ・再起動のことを考える。  
 ・ボタンを押した時のアクションなどの調整
 
@@ -16,7 +14,9 @@ A new Flutter project.
 ー 通知を押した時に止める 
 ー 消すと止める 
 
-
+・isStartとかをSharePreferenceで保存する  キャンセル  
+・バイブレーションを止める  キャンセル  
+・バイブレーションを動かす  キャンセル  
 ・ボタンの大きさ   OK  
 ・ダイアログ文を考える OK  
 ・通知音をなくす。OK  
