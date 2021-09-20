@@ -36,6 +36,10 @@ dependencies:
   #importを整理
   import_sorter: ^4.6.0
 
+  #sharedpreferences
+  shared_preferences:
+  enum_to_string:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
