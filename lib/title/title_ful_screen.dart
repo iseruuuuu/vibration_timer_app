@@ -31,7 +31,8 @@ class _TitleFulScreenState extends State<TitleFulScreen> {
     final flap = FlutterLocalNotificationsPlugin();
     return flap
         .initialize(
-          const InitializationSettings(iOS: IOSInitializationSettings(
+          const InitializationSettings(
+              iOS: IOSInitializationSettings(
             defaultPresentSound: false,
             defaultPresentAlert: true,
             defaultPresentBadge: true,
